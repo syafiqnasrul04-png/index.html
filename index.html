@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise untuk Pasangan Tersayang</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #333;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .message-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+        }
+        
+        .message-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h1 {
+            color: #e91e63;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .love-message {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .heart {
+            color: #e91e63;
+            font-size: 2rem;
+            margin: 10px 0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .controls {
+            margin-top: 20px;
+        }
+        
+        button {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+        }
+        
+        button:hover {
+            background: #c2185b;
+            transform: translateY(-3px);
+        }
+        
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart-bg {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .love-message {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-background" id="hearts-bg"></div>
+    
+    <div class="container">
+        <div id="intro-section">
+            <video id="intro-video" autoplay muted>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-happy-puppy-dog-smiling-and-winking-48145-large.mp4" type="video/mp4">
+                Browser Anda tidak mendukung video tag.
+            </video>
+        </div>
+        
+        <div id="romance-section" class="hidden">
+            <video id="romance-video" muted>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-couple-in-love-hugging-in-a-field-of-flowers-48553-large.mp4" type="video/mp4">
+                Browser Anda tidak mendukung video tag.
+            </video>
+        </div>
+        
+        <div id="message-section" class="hidden">
+            <div class="message-container" id="message-container">
+                <h1>Untuk Pasangan Tersayang</h1>
+                <div class="heart">❤️</div>
+                <p class="love-message">Cinta adalah ketika kebahagiaan orang lain menjadi kebahagiaanmu sendiri.</p>
+                <p class="love-message">Di antara miliaran orang di dunia ini, aku bersyukur menemukanmu.</p>
+                <p class="love-message">Cintaku padamu tidak terbatas oleh waktu, tidak terukur oleh jarak, dan tak terbagi oleh siapapun.</p>
+                <p class="love-message">Kamu adalah alasan senyumku, sumber kebahagiaanku, dan tujuan hidupku.</p>
+                <p class="love-message">Bersamamu, setiap hari adalah petualangan baru yang indah.</p>
+                <div class="heart">❤️</div>
+                <p class="love-message">Aku mencintaimu lebih dari kata-kata bisa ungkapkan.</p>
+                <div class="controls">
+                    <button id="replay-btn">Lihat Lagi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const introVideo = document.getElementById('intro-video');
+            const romanceVideo = document.getElementById('romance-video');
+            const introSection = document.getElementById('intro-section');
+            const romanceSection = document.getElementById('romance-section');
+            const messageSection = document.getElementById('message-section');
+            const messageContainer = document.getElementById('message-container');
+            const replayBtn = document.getElementById('replay-btn');
+            const heartsBg = document.getElementById('hearts-bg');
+            
+            // Create floating hearts background
+            function createHearts() {
+                for (let i = 0; i < 20; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart-bg');
+                    heart.innerHTML = '❤';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDelay = Math.random() * 5 + 's';
+                    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                    heartsBg.appendChild(heart);
+                }
+            }
+            
+            createHearts();
+            
+            // Intro video ends after 4 seconds
+            introVideo.addEventListener('timeupdate', function() {
+                if (this.currentTime >= 4) {
+                    this.pause();
+                    introSection.classList.add('hidden');
+                    romanceSection.classList.remove('hidden');
+                    romanceVideo.play();
+                }
+            });
+            
+            // Romance video ends after 15 seconds
+            romanceVideo.addEventListener('timeupdate', function() {
+                if (this.currentTime >= 15) {
+                    this.pause();
+                    romanceSection.classList.add('hidden');
+                    messageSection.classList.remove('hidden');
+                    setTimeout(() => {
+                        messageContainer.classList.add('show');
+                    }, 500);
+                }
+            });
+            
+            // Replay button functionality
+            replayBtn.addEventListener('click', function() {
+                messageContainer.classList.remove('show');
+                setTimeout(() => {
+                    messageSection.classList.add('hidden');
+                    introSection.classList.remove('hidden');
+                    introVideo.currentTime = 0;
+                    introVideo.play();
+                }, 500);
+            });
+            
+            // Handle video errors
+            introVideo.addEventListener('error', function() {
+                alert('Video intro tidak dapat dimuat. Pastikan koneksi internet stabil.');
+            });
+            
+            romanceVideo.addEventListener('error', function() {
+                alert('Video romantis tidak dapat dimuat. Pastikan koneksi internet stabil.');
+            });
+        });
+    </script>
+</body>
+</html>
