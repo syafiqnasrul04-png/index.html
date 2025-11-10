@@ -3,242 +3,1051 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise untuk Pasangan Tersayang</title>
+    <title>All Payment by XYZZ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #ff6b8b;
+            --primary-dark: #e55a78;
+            --secondary: #6a5af9;
+            --accent: #ffd166;
+            --whatsapp: #25d366;
+            --dark: #2a2d3e;
+            --light: #f9f7ff;
+            --gray: #8a8da5;
+            --gray-light: #e5e7eb;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --anime-pink: #ff7eb9;
+            --anime-purple: #9d4edd;
+            --anime-blue: #4cc9f0;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            color: #333;
-            overflow: hidden;
-            height: 100vh;
+            background: linear-gradient(135deg, #1a1c2c 0%, #2a2d3e 50%, #3d315b 100%);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 126, 185, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(77, 201, 240, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .anime-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 70%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 85%;
+            animation-delay: 4s;
+        }
+        
+        .floating-element:nth-child(4) {
+            width: 70px;
+            height: 70px;
+            top: 80%;
+            left: 15%;
+            animation-delay: 1s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
         }
         
         .container {
-            text-align: center;
-            width: 90%;
-            max-width: 800px;
+            max-width: 900px;
+            width: 100%;
             margin: 0 auto;
+        }
+        
+        .payment-card {
+            background: rgba(42, 45, 62, 0.85);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--anime-purple), var(--anime-pink));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--anime-blue), var(--anime-pink), var(--accent));
+        }
+        
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-icon {
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-header p {
+            opacity: 0.9;
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .payment-content {
+            padding: 30px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--light);
+            display: flex;
+            align-items: center;
             position: relative;
         }
         
-        video {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--anime-pink), transparent);
+            margin-left: 15px;
         }
         
-        .message-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s, transform 1s;
+        .section-title i {
+            margin-right: 10px;
+            color: var(--anime-pink);
         }
         
-        .message-container.show {
-            opacity: 1;
-            transform: translateY(0);
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
         
-        h1 {
-            color: #e91e63;
-            margin-bottom: 20px;
-            font-size: 2.5rem;
+        .payment-method {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            padding: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
         }
         
-        .love-message {
-            font-size: 1.4rem;
-            line-height: 1.6;
+        .payment-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--anime-pink), var(--anime-purple));
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            border-color: var(--anime-pink);
+        }
+        
+        .payment-header {
+            display: flex;
+            align-items: center;
             margin-bottom: 15px;
-            color: #555;
         }
         
-        .heart {
-            color: #e91e63;
-            font-size: 2rem;
-            margin: 10px 0;
+        .payment-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 22px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
         }
         
-        .hidden {
-            display: none;
+        .payment-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
-        .controls {
-            margin-top: 20px;
+        .dana { background: white; }
+        .gopay { background: white; }
+        .ovo { background: linear-gradient(135deg, #4c2b87, #3a2067); }
+        .qris { background: linear-gradient(135deg, #ff6b00, #e55d00); }
+        
+        .payment-name {
+            font-weight: 600;
+            font-size: 16px;
         }
         
-        button {
-            background: #e91e63;
+        .payment-number-container {
+            margin-bottom: 15px;
+        }
+        
+        .payment-number {
+            font-family: 'SF Mono', 'Roboto Mono', monospace;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            word-break: break-all;
+            color: var(--light);
+            text-align: center;
+            margin-bottom: 10px;
+            position: relative;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hidden-number {
+            color: transparent;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            user-select: none;
+        }
+        
+        .hidden-number::after {
+            content: '•••••••••••••••';
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--gray);
+            text-shadow: none;
+        }
+        
+        .qris-container {
+            text-align: center;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .qris-image {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+        
+        .qris-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .qris-instruction {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 10px;
+        }
+        
+        .payment-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .toggle-btn, .copy-btn, .zoom-btn {
+            flex: 1;
+            background: linear-gradient(135deg, var(--anime-purple), var(--anime-pink));
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(157, 78, 221, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .toggle-btn:hover, .copy-btn:hover, .zoom-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(157, 78, 221, 0.4);
+        }
+        
+        .toggle-btn i, .copy-btn i, .zoom-btn i {
+            margin-right: 5px;
+        }
+        
+        .toggle-btn.secondary {
+            background: linear-gradient(135deg, var(--gray), #5a6268);
+        }
+        
+        .zoom-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+        
+        .zoom-btn {
+            flex: 0 0 auto;
+            width: 45%;
+        }
+        
+        .instructions {
+            background: rgba(106, 90, 249, 0.1);
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 4px solid var(--anime-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .instructions::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 120px;
+            height: 120px;
+            background: rgba(77, 201, 240, 0.1);
+            border-radius: 50%;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: var(--anime-blue);
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .instructions h3 i {
+            margin-right: 10px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .instructions li::marker {
+            color: var(--anime-blue);
+            font-weight: bold;
+        }
+        
+        .whatsapp-section {
+            background: rgba(37, 211, 102, 0.1);
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 4px solid var(--whatsapp);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .whatsapp-section::before {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: rgba(37, 211, 102, 0.1);
+            border-radius: 50%;
+        }
+        
+        .whatsapp-section h3 {
+            margin-bottom: 15px;
+            color: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .whatsapp-section h3 i {
+            margin-right: 10px;
+        }
+        
+        .whatsapp-section p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25d366, #1ebe5d);
             color: white;
             border: none;
             padding: 12px 25px;
             border-radius: 50px;
-            font-size: 1.1rem;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
             transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
         }
         
-        button:hover {
-            background: #c2185b;
+        .whatsapp-btn:hover {
             transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
         
-        .hearts-background {
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: var(--gray);
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animasi konfirmasi salin */
+        .copy-confirmation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .copy-confirmation.active {
+            opacity: 1;
+        }
+        
+        .confirmation-content {
+            background: rgba(42, 45, 62, 0.95);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--anime-pink);
+            max-width: 300px;
+            transform: scale(0.8);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .copy-confirmation.active .confirmation-content {
+            transform: scale(1);
+        }
+        
+        .confirmation-icon {
+            font-size: 60px;
+            color: var(--anime-pink);
+            margin-bottom: 20px;
+            animation: bounce 0.5s ease infinite alternate;
+        }
+        
+        .confirmation-text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .confirmation-subtext {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        
+        /* Efek partikel */
+        .particles {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1999;
         }
         
-        .heart-bg {
+        .particle {
             position: absolute;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 20px;
-            animation: float 6s ease-in-out infinite;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--anime-pink);
+            opacity: 0;
         }
         
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(10deg);
-            }
+        /* Modal untuk QRIS Zoom */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 2001;
+        }
+        
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
         }
         
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem;
+            .payment-methods {
+                grid-template-columns: 1fr;
             }
             
-            .love-message {
-                font-size: 1.2rem;
+            .card-header {
+                padding: 20px;
+            }
+            
+            .payment-content {
+                padding: 20px;
+            }
+            
+            .logo-text {
+                font-size: 24px;
+            }
+            
+            .payment-actions {
+                flex-direction: column;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .zoom-controls {
+                flex-direction: column;
+            }
+            
+            .zoom-btn {
+                width: 100%;
+            }
+            
+            .confirmation-content {
+                max-width: 80%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="hearts-background" id="hearts-bg"></div>
+    <div class="anime-decoration">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
     
     <div class="container">
-        <div id="intro-section">
-            <video id="intro-video" autoplay muted>
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-happy-puppy-dog-smiling-and-winking-48145-large.mp4" type="video/mp4">
-                Browser Anda tidak mendukung video tag.
-            </video>
-        </div>
-        
-        <div id="romance-section" class="hidden">
-            <video id="romance-video" muted>
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-couple-in-love-hugging-in-a-field-of-flowers-48553-large.mp4" type="video/mp4">
-                Browser Anda tidak mendukung video tag.
-            </video>
-        </div>
-        
-        <div id="message-section" class="hidden">
-            <div class="message-container" id="message-container">
-                <h1>Untuk Pasangan Tersayang</h1>
-                <div class="heart">❤️</div>
-                <p class="love-message">Cinta adalah ketika kebahagiaan orang lain menjadi kebahagiaanmu sendiri.</p>
-                <p class="love-message">Di antara miliaran orang di dunia ini, aku bersyukur menemukanmu.</p>
-                <p class="love-message">Cintaku padamu tidak terbatas oleh waktu, tidak terukur oleh jarak, dan tak terbagi oleh siapapun.</p>
-                <p class="love-message">Kamu adalah alasan senyumku, sumber kebahagiaanku, dan tujuan hidupku.</p>
-                <p class="love-message">Bersamamu, setiap hari adalah petualangan baru yang indah.</p>
-                <div class="heart">❤️</div>
-                <p class="love-message">Aku mencintaimu lebih dari kata-kata bisa ungkapkan.</p>
-                <div class="controls">
-                    <button id="replay-btn">Lihat Lagi</button>
+        <div class="payment-card">
+            <div class="card-header">
+                          <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="logo-text">All Payment by XYZZ</div>
                 </div>
+                <p>Pilih metode pembayaran e-wallet yang tersedia untuk menyelesaikan transaksi Anda</p>
+            </div>
+            
+            <div class="payment-content">
+                <h2 class="section-title">
+                    <i class="fas fa-wallet"></i> Metode Pembayaran
+                </h2>
+                
+                <div class="payment-methods">
+                    <!-- Dana -->
+                    <div class="payment-method">
+                        <div class="payment-header">
+                            <div class="payment-icon dana">
+                                <img src="https://i.ibb.co.com/GQnZxx8t/Dana-logo.jpg" alt="Dana">
+                            </div>
+                            <div class="payment-name">Dana</div>
+                        </div>
+                        
+                        <div class="payment-number-container">
+                            <div class="payment-number hidden-number" id="dana-number">08816615715</div>
+                        </div>
+                        
+                        <div class="payment-actions">
+                            <button class="toggle-btn" data-target="dana-number">
+                                <i class="fas fa-eye"></i> Tampilkan
+                            </button>
+                            <button class="copy-btn" data-number="08816615715">
+                                <i class="fas fa-copy"></i> Salin
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gopay -->
+                    <div class="payment-method">
+                        <div class="payment-header">
+                            <div class="payment-icon gopay">
+                                <img src="https://i.ibb.co.com/nMBSKnLH/8e739ac2-0521-4554-bb48-e62f9010e708.jpg" alt="Gopay">
+                            </div>
+                            <div class="payment-name">Gopay</div>
+                        </div>
+                        
+                        <div class="payment-number-container">
+                            <div class="payment-number hidden-number" id="gopay-number">0882003956769</div>
+                        </div>
+                        
+                        <div class="payment-actions">
+                            <button class="toggle-btn" data-target="gopay-number">
+                                <i class="fas fa-eye"></i> Tampilkan
+                            </button>
+                            <button class="copy-btn" data-number="0882003956769">
+                                <i class="fas fa-copy"></i> Salin
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- OVO -->
+                    <div class="payment-method">
+                        <div class="payment-header">
+                            <div class="payment-icon ovo">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="payment-name">OVO</div>
+                        </div>
+                        
+                        <div class="payment-number-container">
+                            <div class="payment-number hidden-number" id="ovo-number">0882003956769</div>
+                        </div>
+                        
+                        <div class="payment-actions">
+                            <button class="toggle-btn" data-target="ovo-number">
+                                <i class="fas fa-eye"></i> Tampilkan
+                            </button>
+                            <button class="copy-btn" data-number="0882003956769">
+                                <i class="fas fa-copy"></i> Salin
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- QRIS -->
+                    <div class="payment-method">
+                        <div class="payment-header">
+                            <div class="payment-icon qris">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <div class="payment-name">QRIS</div>
+                        </div>
+                        
+                        <div class="qris-container">
+                            <img src="https://i.ibb.co.com/gZTvDt7j/Screenshot-20251102-223454.jpg" alt="QRIS Payment" class="qris-image" id="qris-image">
+                            <p class="qris-instruction">Klik gambar untuk memperbesar</p>
+                        </div>
+                        
+                        <div class="zoom-controls">
+                            <button class="zoom-btn" id="zoom-in">
+                                <i class="fas fa-search-plus"></i> Perbesar
+                            </button>
+                            <button class="zoom-btn" id="zoom-out">
+                                <i class="fas fa-search-minus"></i> Kecilkan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="instructions">
+                    <h3>
+                        <i class="fas fa-info-circle"></i> Petunjuk Pembayaran
+                    </h3>
+                    <ol>
+                        <li>Pilih salah satu metode pembayaran di atas</li>
+                        <li>Untuk Dana, Gopay, dan OVO: Klik tombol "Tampilkan" untuk melihat nomor, lalu "Salin" untuk menyalin</li>
+                        <li>Untuk QRIS: Scan kode QR menggunakan aplikasi e-wallet atau banking Anda</li>
+                        <li>Gunakan tombol "Perbesar" dan "Kecilkan" untuk menyesuaikan ukuran QRIS</li>
+                        <li>Buka aplikasi e-wallet/banking dan lakukan transfer/pembayaran</li>
+                        <li>Simpan bukti pembayaran Anda untuk konfirmasi</li>
+                    </ol>
+                </div>
+                
+                <div class="whatsapp-section">
+                    <h3>
+                        <i class="fab fa-whatsapp"></i> Konfirmasi Pembayaran
+                    </h3>
+                    <p>Setelah melakukan pembayaran, silakan kirim bukti melalui WhatsApp</p>
+                    <a href="https://wa.me/62882003956769?text=Halo%20admin%20XYZZ,%20saya%20telah%20melakukan%20pembayaran.%20Berikut%20bukti%20transfer%20saya:" target="_blank" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Kirim Bukti via WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>© 2023 All Payment by XYZZ. Semua hak dilindungi.</p>
             </div>
         </div>
     </div>
+    
+    <!-- Modal untuk QRIS Zoom -->
+    <div class="modal" id="qris-modal">
+        <button class="modal-close" id="modal-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <img src="https://i.ibb.co.com/gZTvDt7j/Screenshot-20251102-223454.jpg" alt="QRIS Payment" class="modal-content" id="modal-qris-image">
+    </div>
+    
+    <!-- Animasi konfirmasi salin -->
+    <div class="copy-confirmation" id="copy-confirmation">
+        <div class="confirmation-content">
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="confirmation-text">Nomor Berhasil Disalin!</div>
+            <div class="confirmation-subtext">Sekarang buka aplikasi e-wallet Anda</div>
+        </div>
+    </div>
+    
+    <!-- Partikel untuk efek animasi -->
+    <div class="particles" id="particles"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const introVideo = document.getElementById('intro-video');
-            const romanceVideo = document.getElementById('romance-video');
-            const introSection = document.getElementById('intro-section');
-            const romanceSection = document.getElementById('romance-section');
-            const messageSection = document.getElementById('message-section');
-            const messageContainer = document.getElementById('message-container');
-            const replayBtn = document.getElementById('replay-btn');
-            const heartsBg = document.getElementById('hearts-bg');
+            const toggleButtons = document.querySelectorAll('.toggle-btn');
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            const copyConfirmation = document.getElementById('copy-confirmation');
+            const particlesContainer = document.getElementById('particles');
+            const qrisImage = document.getElementById('qris-image');
+            const modal = document.getElementById('qris-modal');
+            const modalQrisImage = document.getElementById('modal-qris-image');
+            const modalClose = document.getElementById('modal-close');
+            const zoomInBtn = document.getElementById('zoom-in');
+            const zoomOutBtn = document.getElementById('zoom-out');
             
-            // Create floating hearts background
-            function createHearts() {
+            let currentScale = 1;
+            const minScale = 0.5;
+            const maxScale = 3;
+            const scaleStep = 0.2;
+            
+            // Fungsi untuk toggle tampilan nomor
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const numberElement = document.getElementById(targetId);
+                    
+                    if (numberElement.classList.contains('hidden-number')) {
+                        // Tampilkan nomor
+                        numberElement.classList.remove('hidden-number');
+                        this.innerHTML = '<i class="fas fa-eye-slash"></i> Sembunyikan';
+                        this.classList.add('secondary');
+                    } else {
+                        // Sembunyikan nomor
+                        numberElement.classList.add('hidden-number');
+                        this.innerHTML = '<i class="fas fa-eye"></i> Tampilkan';
+                        this.classList.remove('secondary');
+                    }
+                });
+            });
+            
+            // Fungsi untuk menyalin nomor dengan animasi
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const number = this.getAttribute('data-number');
+                    
+                    // Create a temporary textarea to copy text
+                    const textarea = document.createElement('textarea');
+                    textarea.value = number;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    
+                    // Tampilkan animasi konfirmasi
+                    showCopyAnimation();
+                    
+                    // Tambahkan efek partikel
+                    createParticles(button);
+                });
+            });
+            
+            // Fungsi untuk menampilkan animasi konfirmasi salin
+            function showCopyAnimation() {
+                copyConfirmation.classList.add('active');
+                
+                setTimeout(() => {
+                    copyConfirmation.classList.remove('active');
+                }, 2000);
+            }
+            
+            // Fungsi untuk membuat partikel animasi
+            function createParticles(button) {
+                const rect = button.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                // Hapus partikel sebelumnya
+                particlesContainer.innerHTML = '';
+                
+                // Buat partikel baru
                 for (let i = 0; i < 20; i++) {
-                    const heart = document.createElement('div');
-                    heart.classList.add('heart-bg');
-                    heart.innerHTML = '❤';
-                    heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.animationDelay = Math.random() * 5 + 's';
-                    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-                    heartsBg.appendChild(heart);
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Warna acak
+                    const colors = ['#ff6b8b', '#6a5af9', '#4cc9f0', '#ffd166', '#9d4edd'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.background = color;
+                    
+                    // Posisi acak
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 50 + Math.random() * 100;
+                    const x = centerX + Math.cos(angle) * distance;
+                    const y = centerY + Math.sin(angle) * distance;
+                    
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    
+                    // Animasi
+                    particle.style.animation = `particleMove 1s ease-out forwards`;
+                    
+                    // Style untuk animasi partikel
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes particleMove {
+                            0% {
+                                opacity: 1;
+                                transform: translate(0, 0) scale(1);
+                            }
+                            100% {
+                                opacity: 0;
+                                transform: translate(${Math.cos(angle) * 100}px, ${Math.sin(angle) * 100}px) scale(0);
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    particlesContainer.appendChild(particle);
+                    
+                    // Hapus partikel setelah animasi selesai
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 1000);
                 }
             }
             
-            createHearts();
+            // Fungsi untuk membuka modal QRIS
+            qrisImage.addEventListener('click', function() {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
             
-            // Intro video ends after 4 seconds
-            introVideo.addEventListener('timeupdate', function() {
-                if (this.currentTime >= 4) {
-                    this.pause();
-                    introSection.classList.add('hidden');
-                    romanceSection.classList.remove('hidden');
-                    romanceVideo.play();
+            // Fungsi untuk menutup modal QRIS
+    modalClose.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Tutup modal ketika klik di luar gambar
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
                 }
             });
             
-            // Romance video ends after 15 seconds
-            romanceVideo.addEventListener('timeupdate', function() {
-                if (this.currentTime >= 15) {
-                    this.pause();
-                    romanceSection.classList.add('hidden');
-                    messageSection.classList.remove('hidden');
-                    setTimeout(() => {
-                        messageContainer.classList.add('show');
-                    }, 500);
+            // Fungsi untuk memperbesar QRIS
+            zoomInBtn.addEventListener('click', function() {
+                if (currentScale < maxScale) {
+                    currentScale += scaleStep;
+                    qrisImage.style.transform = `scale(${currentScale})`;
                 }
             });
             
-            // Replay button functionality
-            replayBtn.addEventListener('click', function() {
-                messageContainer.classList.remove('show');
-                setTimeout(() => {
-                    messageSection.classList.add('hidden');
-                    introSection.classList.remove('hidden');
-                    introVideo.currentTime = 0;
-                    introVideo.play();
-                }, 500);
-            });
-            
-            // Handle video errors
-            introVideo.addEventListener('error', function() {
-                alert('Video intro tidak dapat dimuat. Pastikan koneksi internet stabil.');
-            });
-            
-            romanceVideo.addEventListener('error', function() {
-                alert('Video romantis tidak dapat dimuat. Pastikan koneksi internet stabil.');
+            // Fungsi untuk mengecilkan QRIS
+            zoomOutBtn.addEventListener('click', function() {
+                if (currentScale > minScale) {
+                    currentScale -= scaleStep;
+                    qrisImage.style.transform = `scale(${currentScale})`;
+                }
             });
         });
     </script>
 </body>
 </html>
+```
